@@ -2360,6 +2360,15 @@ class Settings(private val context: Context) {
         get() = prefs.getBoolean("use-gradient-background", false)
         set(value) { prefs.edit().putBoolean("use-gradient-background", value).apply() }
 
+    /**
+     * Use the device's Material You (wallpaper-derived) color palette for the app's Material
+     * components. Only has an effect on Android 12+ (API 31), where the system palette exists;
+     * everywhere else it is a no-op. Off by default so the app's tuned look is unchanged.
+     */
+    var materialYouColors: Boolean
+        get() = prefs.getBoolean("material-you-colors", false)
+        set(value) { prefs.edit().putBoolean("material-you-colors", value).apply() }
+
     var aaMonochromeEnabled: Boolean
         get() = prefs.getBoolean("aa-monochrome-enabled", false)
         set(value) { prefs.edit().putBoolean("aa-monochrome-enabled", value).apply() }

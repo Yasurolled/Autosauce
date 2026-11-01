@@ -50,6 +50,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
     private var pendingAppThemeManualStart: Int? = null
     private var pendingAppThemeManualEnd: Int? = null
     private var pendingUseExtremeDarkMode: Boolean? = null
+    private var pendingMaterialYouColors: Boolean? = null
 
     // Shared "Location" mode + sunrise reference settings
     private var pendingUseFixedSunriseLocation: Boolean? = null
@@ -128,6 +129,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
         pendingAppThemeManualStart = settings.appThemeManualStart
         pendingAppThemeManualEnd = settings.appThemeManualEnd
         pendingUseExtremeDarkMode = settings.useExtremeDarkMode
+        pendingMaterialYouColors = settings.materialYouColors
 
         pendingNightMode = settings.nightMode
         pendingUseFixedSunriseLocation = settings.useFixedSunriseLocation
@@ -234,6 +236,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
                 pendingUseFixedSunriseLocation != settings.useFixedSunriseLocation ||
                 pendingLocationOutsideNight != settings.locationOutsideNight
         val extremeDarkChanged = pendingUseExtremeDarkMode != settings.useExtremeDarkMode
+        val materialYouChanged = pendingMaterialYouColors != settings.materialYouColors
         val viewModeChanged = pendingViewMode != settings.viewMode
 
         // Save night mode settings
@@ -251,6 +254,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
         pendingAppThemeManualStart?.let { if (it != settings.appThemeManualStart) settings.appThemeManualStart = it }
         pendingAppThemeManualEnd?.let { if (it != settings.appThemeManualEnd) settings.appThemeManualEnd = it }
         pendingUseExtremeDarkMode?.let { if (it != settings.useExtremeDarkMode) settings.useExtremeDarkMode = it }
+        pendingMaterialYouColors?.let { if (it != settings.materialYouColors) settings.materialYouColors = it }
 
         // Save AA monochrome settings
         pendingAaMonochromeEnabled?.let { if (it != settings.aaMonochromeEnabled) settings.aaMonochromeEnabled = it }
@@ -293,7 +297,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
         ToastUtils.showToast(context, getString(R.string.settings_saved), Toast.LENGTH_SHORT, force = true)
 
         // Signal visual change so all activities (including MainActivity) pick up changes
-        if (extremeDarkChanged || themeChanged ||
+        if (extremeDarkChanged || themeChanged || materialYouChanged ||
             (appThemeThresholdChanged && pendingAppTheme?.let { !AppThemeManager.isStaticMode(it) } == true)) {
             AppThemeManager.signalVisualChange()
         }
@@ -306,6 +310,7 @@ class DarkModeFragment : Fragment(), SensorEventListener {
                 pendingAppThemeManualStart != settings.appThemeManualStart ||
                 pendingAppThemeManualEnd != settings.appThemeManualEnd ||
                 pendingUseExtremeDarkMode != settings.useExtremeDarkMode ||
+                pendingMaterialYouColors != settings.materialYouColors ||
                 pendingNightMode != settings.nightMode ||
                 pendingUseFixedSunriseLocation != settings.useFixedSunriseLocation ||
                 pendingLocationOutsideNight != settings.locationOutsideNight ||
@@ -687,6 +692,20 @@ class DarkModeFragment : Fragment(), SensorEventListener {
                 }
             ))
         }
+
+        // Material You palette (Android 12+). Independent of the theme mode, so always shown;
+        // it is simply a no-op on older devices.
+        items.add(SettingItem.ToggleSettingEntry(
+            stableId = "materialYouColors",
+            nameResId = R.string.material_you_colors,
+            descriptionResId = R.string.material_you_colors_description,
+            isChecked = pendingMaterialYouColors!!,
+            onCheckedChanged = { isChecked ->
+                pendingMaterialYouColors = isChecked
+                checkChanges()
+                updateSettingsList()
+            }
+        ))
 
         // App theme sub-options: threshold slider for Light Sensor / Screen Brightness
         if (pendingAppTheme == Settings.AppTheme.LIGHT_SENSOR || pendingAppTheme == Settings.AppTheme.SCREEN_BRIGHTNESS) {

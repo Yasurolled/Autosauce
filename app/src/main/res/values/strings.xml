@@ -303,6 +303,8 @@
     <string name="use_gradient_background_description_off">The app\'s classic background is being used</string>
     <string name="use_gradient_background_description_on_auto">The app draws its own background with the gradient circle centered. Does not apply to Extreme Dark mode</string>
     <string name="use_gradient_background_description_off_auto">The app\'s classic background is being used. Does not apply to Extreme Dark mode</string>
+    <string name="material_you_colors">Material You colors</string>
+    <string name="material_you_colors_description">Match the app\'s buttons and panels to your device\'s wallpaper colors. Only works on Android 12 and newer; the app\'s own home screen colors are not changed.</string>
     <string name="category_dark_mode">Dark Mode</string>
     <string name="category_theming">Theming</string>
     <string name="customization_title">Customization</string>

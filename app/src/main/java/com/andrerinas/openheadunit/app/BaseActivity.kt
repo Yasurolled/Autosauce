@@ -20,6 +20,7 @@ import com.andrerinas.openheadunit.utils.AppLog
 import com.andrerinas.openheadunit.utils.AppThemeManager
 import com.andrerinas.openheadunit.utils.LocaleHelper
 import com.andrerinas.openheadunit.utils.Settings
+import com.google.android.material.color.DynamicColors
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.transition.Transition
@@ -37,6 +38,7 @@ open class BaseActivity : AppCompatActivity() {
     private var currentNightMode: Int = 0
     private var currentUseGradientBackground: Boolean = false
     private var currentUseExtremeDarkMode: Boolean = false
+    private var currentMaterialYouColors: Boolean = false
     private var currentHudMirroring: Boolean = false
     private var currentHomeBackgroundImagePath: String? = null
 
@@ -52,8 +54,15 @@ open class BaseActivity : AppCompatActivity() {
         currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         currentUseGradientBackground = settings.useGradientBackground
         currentUseExtremeDarkMode = settings.useExtremeDarkMode
+        currentMaterialYouColors = settings.materialYouColors
         currentHudMirroring = settings.hudMirroring
         currentHomeBackgroundImagePath = settings.homeBackgroundImagePath
+
+        // Material You: tint the app's Material components with the system palette. The helper
+        // is a no-op on Android 11 and below, where no palette exists, so older units are safe.
+        if (currentMaterialYouColors) {
+            DynamicColors.applyToActivityIfAvailable(this)
+        }
 
         val appliedVersion = AppThemeManager.themeVersion.value
         AppThemeManager.themeVersion.observe(this) { version ->
@@ -99,6 +108,7 @@ open class BaseActivity : AppCompatActivity() {
             currentNightMode != actualNightMode ||
             currentUseGradientBackground != settings.useGradientBackground ||
             currentUseExtremeDarkMode != settings.useExtremeDarkMode ||
+            currentMaterialYouColors != settings.materialYouColors ||
             currentHudMirroring != settings.hudMirroring ||
             currentHomeBackgroundImagePath != settings.homeBackgroundImagePath) {
             recreate()

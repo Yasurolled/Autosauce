@@ -12,6 +12,19 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### Material You: add an opt-in "dynamic color" toggle
+
+First step of the Material Expressive look. A new switch, found on the
+Appearance screen (next to "Use Extreme Dark"), lets you make the app's
+buttons and panels follow your phone's wallpaper colors — the "Material You"
+feature from Android 12. It is **off by default**, so the app looks exactly
+the same until you turn it on. On phones older than Android 12 the switch
+does nothing (those systems have no wallpaper palette), and the app's own home
+screen colors are never touched — only the standard Android controls adopt
+the palette.
+
+---
+
 ### Ignore the Kotlin build-cache folder in git
 
 A small housekeeping fix. When the app is compiled, the Kotlin tool leaves a
