@@ -15,6 +15,26 @@ everything.
 
 ## 2026-11-01
 
+### Git: give the fork its own history — only two names in it
+
+Before this, the repo's git history also contained the whole upstream
+open-headunit past (years of commits by the upstream team), so their
+names showed up next to ours in the commit list and the GitHub
+contributors page. The fork now starts from a single "Import" commit —
+a full snapshot of the upstream code at the fork point, whose message
+says who the code originally belongs to — and all eighteen Autosauce
+commits sit on top of it, each authored by Claude Code and co-authored
+by Yasu-P. So the fork's entire history now carries exactly two names:
+Yasu-P and Claude Code. Both fork branches were force-pushed to carry
+the new history. Nothing was touched in the upstream repository, no
+file content changed at all (the code tree is byte-identical), and the
+upstream authors keep their copyright through the LICENSE file and
+this changelog's "Upstream release history" section. Syncing with
+upstream later still works the ordinary way: fetch and merge
+`origin/main`.
+
+---
+
 ### Git: sign the fork's history as Claude Code, co-authored by Yasu-P
 
 Up to now every commit in the fork's own history carried only the
