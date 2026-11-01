@@ -2,7 +2,7 @@
 
 **Last updated:** September 1, 2026
 
-This Privacy Policy applies to the mobile application **Open Headunit** (formerly known as **Headunit Revived**, package name: `com.andrerinas.headunitrevived`), developed and published by **André Rinas** ("we", "our", or "us").
+This Privacy Policy applies to the mobile application **Open Headunit** (formerly known as **Headunit Revived**; the Autosauce fork ships under the package name `autosauce.yasurolled.com`), developed and published by **André Rinas** ("we", "our", or "us").
 
 We are committed to protecting your privacy. This document outlines how Open Headunit handles device data and permissions.
 
@@ -11,7 +11,7 @@ We are committed to protecting your privacy. This document outlines how Open Hea
 ## 1. Developer and Application Identification
 
 - **Application Name:** Open Headunit (formerly Headunit Revived)
-- **Package Name:** `com.andrerinas.headunitrevived`
+- **Package Name:** `autosauce.yasurolled.com` (Autosauce fork; the upstream listing used `com.andrerinas.headunitrevived`)
 - **Developer / Publisher:** André Rinas
 - **Contact Email:** headunit@andrerinas.com
 - **Official Website:** https://headunit.andrerinas.com

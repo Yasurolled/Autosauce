@@ -9,23 +9,23 @@ The **package** and the **action prefix** are different, on purpose:
 
 | | |
 |---|---|
-| package (applicationId) | `com.andrerinas.headunitrevived` |
+| package (applicationId) | `autosauce.yasurolled.com` |
 | action prefix (namespace) | `com.andrerinas.openheadunit` |
 
-The app kept its original Play Store listing when it was renamed, so the two never matched. Using
-the wrong one silently does nothing — there is no error. Copy the lines below rather than typing
-them.
+The fork carries its own application id, while the actions keep the upstream code-namespace
+prefix, so the two never match. Using the wrong one silently does nothing — there is no error.
+Copy the lines below rather than typing them.
 
 ## Sending a command
 
 Everything goes to one receiver:
 
 ```
-com.andrerinas.headunitrevived/com.andrerinas.openheadunit.automation.AutomationReceiver
+autosauce.yasurolled.com/com.andrerinas.openheadunit.automation.AutomationReceiver
 ```
 
 **Tasker**: Action → Misc → Send Intent. Set *Target* to **Broadcast Receiver**, *Action* to the
-action you want, *Package* to `com.andrerinas.headunitrevived`, *Class* to the receiver above.
+action you want, *Package* to `autosauce.yasurolled.com`, *Class* to the receiver above.
 Targeting a broadcast receiver is what lets this work without granting Tasker "Display over other
 apps" — an activity target needs it on Android 10 and up.
 
@@ -35,7 +35,7 @@ extras with explicit types; Tasker allows two.
 **adb**:
 
 ```bash
-PKG=com.andrerinas.headunitrevived
+PKG=autosauce.yasurolled.com
 RX=$PKG/com.andrerinas.openheadunit.automation.AutomationReceiver
 
 adb shell am broadcast -n $RX -a com.andrerinas.openheadunit.ACTION_QUERY_STATE
@@ -104,7 +104,7 @@ that needed it, and any app on the device can send these:
 
 ## Reacting to the session
 
-The app broadcasts `com.andrerinas.headunitrevived.SESSION_STATE` whenever the session changes.
+The app broadcasts `autosauce.yasurolled.com.SESSION_STATE` whenever the session changes.
 It is implicit and needs no permission, so **Tasker's *Intent Received* event works directly** —
 this is the answer to "how do I tell whether Android Auto is actually running on the head unit",
 which nothing else on the device reports (`%UIMODE` does not change for a head unit).
@@ -126,7 +126,7 @@ does not name the phone.
 Watch it from a shell with:
 
 ```bash
-adb shell am broadcast -a com.andrerinas.headunitrevived.SESSION_STATE --receiver-foreground
+adb shell am broadcast -a autosauce.yasurolled.com.SESSION_STATE --receiver-foreground
 ```
 
 or just read the log — every event also prints as `AapService: session state <state>`.

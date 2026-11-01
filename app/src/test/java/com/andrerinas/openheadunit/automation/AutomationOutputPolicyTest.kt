@@ -22,7 +22,7 @@ class AutomationOutputPolicyTest {
     fun `app private storage is refused`() {
         assertFalse(
             AutomationOutputPolicy.mayWriteTo(
-                "/data/data/com.andrerinas.headunitrevived/shared_prefs/settings.xml",
+                "/data/data/autosauce.yasurolled.com/shared_prefs/settings.xml",
                 roots
             )
         )

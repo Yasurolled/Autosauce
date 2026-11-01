@@ -12,7 +12,7 @@ import android.view.KeyEvent
  */
 
 object HeadUnit {
-    const val packageName = "com.andrerinas.headunitrevived"
+    const val packageName = "autosauce.yasurolled.com"
 }
 
 class KeyIntent(event: KeyEvent): Intent(action) {
