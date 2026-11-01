@@ -12,6 +12,19 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### Docs: put the contributors list in its own file, authored by the AI co-developer
+
+The contributors list now lives in its own file, CONTRIBUTORS.md, at
+the root of the repo (the README section now points to it). This
+particular commit was deliberately made *under the AI co-developer's
+name* (the git author is "Claude Code", not the human's machine
+account) so that Claude Code shows up as a contributor in GitHub's
+own contributors list for the fork, not just in the README. The
+model that did the work is stated separately, as before:
+Agnes-3.0-flash, developed by Sapiens AI.
+
+---
+
 ### App: rename the user-visible name from "Open Headunit" to "Autosauce"
 
 The fork now has its own name, so every place a user can actually

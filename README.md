@@ -33,6 +33,8 @@ used is stated separately: **Agnes-3.0-flash, developed by Sapiens AI**.
 
 ## Contributors
 
+The record-keeping list lives in [CONTRIBUTORS.md](CONTRIBUTORS.md):
+
 - **Yasurolled** — fork author; Bluetooth connection work, button-color
   customization, the Material You toggle, and the fork's documentation.
 - **Claude Code (Anthropic)** — AI coding agent that developed the
