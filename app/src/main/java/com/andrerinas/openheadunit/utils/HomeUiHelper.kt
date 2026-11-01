@@ -100,13 +100,14 @@ object HomeUiHelper {
      * the icon like the others, so it stays readable at the smallest scale too.
      */
     private val fittedTiles = listOf(
-        R.id.usb_button, R.id.wifi_button, R.id.self_mode_button, R.id.settings_button, R.id.exit_button,
-        R.id.home_bar_scroll
+        R.id.usb_button, R.id.wifi_button, R.id.self_mode_button, R.id.bt_button,
+        R.id.settings_button, R.id.exit_button, R.id.home_bar_scroll
     )
 
     fun chosenConnections(settings: Settings): Set<Connection> = settings.connectionModes.map {
         when (it) {
             Settings.ConnectionMode.USB -> Connection.USB
+            Settings.ConnectionMode.BT -> Connection.BT
             Settings.ConnectionMode.WIFI -> Connection.WIFI
             Settings.ConnectionMode.SELF -> Connection.SELF
         }

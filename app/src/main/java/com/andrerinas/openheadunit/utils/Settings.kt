@@ -1765,7 +1765,7 @@ class Settings(private val context: Context) {
         }
     }
 
-    /** A connection type the user can pick in the multi-select (USB, WiFi or Self Mode). */
+    /** A connection type the user can pick in the multi-select (USB, Bluetooth, WiFi or Self Mode). */
     enum class ConnectionMode(val key: String) {
         USB("usb"), BT("bt"), WIFI("wifi"), SELF("self");
 

@@ -323,11 +323,12 @@ class OnboardingActivity : BaseActivity() {
             }
         }
 
-        // --- Connection: multi-select of USB / WiFi / Self Mode ---
+        // --- Connection: multi-select of USB / Bluetooth / WiFi / Self Mode ---
         val connGroup = findViewById<MaterialButtonToggleGroup>(R.id.onb_conn_group)
         isBinding = true
         val modes = settings.connectionModes
         if (Settings.ConnectionMode.USB in modes) connGroup.check(R.id.onb_conn_usb)
+        if (Settings.ConnectionMode.BT in modes) connGroup.check(R.id.onb_conn_bt)
         if (Settings.ConnectionMode.WIFI in modes) connGroup.check(R.id.onb_conn_wifi)
         if (Settings.ConnectionMode.SELF in modes) connGroup.check(R.id.onb_conn_self)
         isBinding = false
@@ -337,6 +338,7 @@ class OnboardingActivity : BaseActivity() {
             val checked = group.checkedButtonIds
             val selected = buildSet {
                 if (R.id.onb_conn_usb in checked) add(Settings.ConnectionMode.USB)
+                if (R.id.onb_conn_bt in checked) add(Settings.ConnectionMode.BT)
                 if (R.id.onb_conn_wifi in checked) add(Settings.ConnectionMode.WIFI)
                 if (R.id.onb_conn_self in checked) add(Settings.ConnectionMode.SELF)
             }
@@ -833,6 +835,7 @@ class OnboardingActivity : BaseActivity() {
         if (modes.isEmpty()) return getString(R.string.connection_kind_unset)
         val parts = mutableListOf<String>()
         if (Settings.ConnectionMode.USB in modes) parts.add(getString(R.string.connection_kind_usb))
+        if (Settings.ConnectionMode.BT in modes) parts.add(getString(R.string.connection_kind_bt))
         if (Settings.ConnectionMode.WIFI in modes) parts.add(getString(R.string.connection_kind_wifi))
         if (Settings.ConnectionMode.SELF in modes) parts.add(getString(R.string.self_mode))
         return parts.joinToString(", ")

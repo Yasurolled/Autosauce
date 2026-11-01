@@ -3174,6 +3174,7 @@ class SettingsFragment : Fragment() {
         if (modes.isEmpty()) return getString(R.string.connection_kind_all)
         val parts = mutableListOf<String>()
         if (Settings.ConnectionMode.USB in modes) parts.add(getString(R.string.connection_kind_usb))
+        if (Settings.ConnectionMode.BT in modes) parts.add(getString(R.string.connection_kind_bt))
         if (Settings.ConnectionMode.WIFI in modes) parts.add(getString(R.string.connection_kind_wifi))
         if (Settings.ConnectionMode.SELF in modes) parts.add(getString(R.string.self_mode))
         return parts.joinToString(", ")
@@ -3286,16 +3287,18 @@ class SettingsFragment : Fragment() {
     private fun showConnectionModeDialog() {
         val order = listOf(
             Settings.ConnectionMode.USB,
+            Settings.ConnectionMode.BT,
             Settings.ConnectionMode.WIFI,
             Settings.ConnectionMode.SELF
         )
         val labels = arrayOf(
             getString(R.string.connection_kind_usb),
+            getString(R.string.connection_kind_bt),
             getString(R.string.connection_kind_wifi),
             getString(R.string.self_mode)
         )
         val current = settings.connectionModes
-        // An empty set means "All", which the label says out loud: the three of them start checked
+        // An empty set means "All", which the label says out loud: the four of them start checked
         // so the dialog does not read as "none chosen".
         val all = current.isEmpty()
         val checked = BooleanArray(order.size) { all || order[it] in current }
@@ -3307,7 +3310,7 @@ class SettingsFragment : Fragment() {
                 touched = true
             }
             .setPositiveButton(android.R.string.ok) { dialog, _ ->
-                // Left alone, "All" stays "All" instead of becoming three explicit modes.
+                // Left alone, "All" stays "All" instead of becoming four explicit modes.
                 if (!(all && !touched)) {
                     // This dialog saves immediately, so the toolbar's later Save snapshot
                     // cannot detect the change. Apply wireless routing when it changes here.

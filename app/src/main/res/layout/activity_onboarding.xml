@@ -144,6 +144,14 @@
                         app:iconGravity="textStart"
                         android:text="@string/onb_conn_usb_label" />
                     <com.google.android.material.button.MaterialButton
+                        android:id="@+id/onb_conn_bt"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:icon="@drawable/ic_bluetooth"
+                        app:iconGravity="textStart"
+                        android:text="@string/connection_kind_bt" />
+                    <com.google.android.material.button.MaterialButton
                         android:id="@+id/onb_conn_wifi"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="match_parent"
