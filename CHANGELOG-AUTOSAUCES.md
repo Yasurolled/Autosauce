@@ -130,3 +130,11 @@ the Android NDK 29.0.14206865 that the project pins, so the build initially
 failed. It was installed with the SDK manager (via a retry script, because the
 CDN intermittently drops the download). That is an environment fix, not a
 change to the app, so it is noted here for completeness but has no commit._
+
+_Note on the test bench (not a code commit): running the project's whole
+unit-test suite on this PC shows 37 failing tests, all inside seven test
+files about the P2P/WiFi-direct native side and about the Settings screen's
+look. The identical 37 failures also happen on a clean copy of the code
+from before any of this project's work, so they are not caused by anything
+done here — this machine's test runner cannot load the native libraries those
+tests need. The app itself builds, and all the other ~4,374 tests pass._
