@@ -15,6 +15,21 @@ everything.
 
 ## 2026-11-01
 
+### Git: sign the fork's history as Claude Code, co-authored by Yasu-P
+
+Up to now every commit in the fork's own history carried only the
+machine account's name, so the commit list read "all Yasu-P". The
+seventeen fork-only commits (everything above the upstream head) were
+re-signed: the author and committer of each is now "Claude Code", and
+each message ends with a co-author line for Yasu-P — so every commit in
+the fork's history shows both of us, in `git log` and on GitHub. The
+re-sign changed no files at all, only the names on the commits, so the
+builds and the pushed code are identical; the fork's `main` and
+`autosauce` branches were force-pushed to carry the new history. The
+upstream repository was not touched.
+
+---
+
 ### App: give the fork its own package id (autosauce.yasurolled.com)
 
 The app now installs under its own package name, `autosauce.yasurolled.com`,
