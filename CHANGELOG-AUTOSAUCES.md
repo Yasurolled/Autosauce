@@ -12,6 +12,21 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### License: give the fork its own copyright and trademark notice
+
+The legal paperwork for the fork. The project keeps the same open
+license it started with (the GNU Affero General Public License v3) —
+that part of the license file is untouched, because the upstream
+code must stay under it. A short notice was added at the very top of
+that same file saying: this project is the "Autosauce" fork of
+open-headunit, maintained by Yasurolled; the 2026 modifications are
+copyrighted to Yasurolled; and "Yasurolled" and "Autosauce" are
+trademarks of Yasurolled, with the Google trademarks still noted as
+before. No legal terms changed — only who it is, who owns the
+modifications, and whose trademarks are which.
+
+---
+
 ### Tests: repair the home-screen rule tests that Bluetooth had quietly broken
 
 A housekeeping fix to the test suite, no change to the app itself. The

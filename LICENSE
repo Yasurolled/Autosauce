@@ -1,3 +1,32 @@
+Autosauce — a fork of open-headunit
+====================================
+
+Autosauce is a fork of the open-headunit project
+(https://github.com/andreknieriem/open-headunit), maintained by
+Yasurolled (https://github.com/Yasurolled/Autosauce).
+
+The whole project — the upstream open-headunit code, and every
+Autosauce modification on top of it — is licensed under the
+GNU Affero General Public License, Version 3, printed in full
+below. No separate license is granted for the fork.
+
+Copyright
+---------
+Copyright (C) 2026 Yasurolled, for the Autosauce modifications.
+Copyright (C) 2007 Free Software Foundation, Inc., for the
+license text that follows.
+Upstream open-headunit code stays under the copyright of its
+original authors, as recorded in the individual source files, and
+is licensed to you through this same AGPLv3.
+
+Trademarks
+----------
+"Yasurolled" and "Autosauce" are trademarks of Yasurolled.
+"Android", "Google Play", "Google Maps" and "Android Auto" are
+trademarks of Google Inc.
+
+=================================================================
+
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
