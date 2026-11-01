@@ -2070,7 +2070,7 @@ class HomeFragment : Fragment() {
             return
         }
         if (!App.provide(requireContext()).settings.showsBt()) {
-            ToastUtils.showToast(requireContext(), getString(R.string.bt_disabled_in_settings), Toast.LENGTH_SHORT).show()
+            ToastUtils.showToast(requireContext(), getString(R.string.bt_disabled_in_settings), Toast.LENGTH_SHORT)
             return
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
