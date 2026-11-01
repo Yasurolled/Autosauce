@@ -57,8 +57,8 @@ class HfpAtResponderTest {
 
     @Test
     fun `device identification is answered`() {
-        assertEquals(listOf("""+CGMI: "Open Headunit"""", "OK"), body("AT+CGMI"))
-        assertEquals(listOf("""+CGMM: "Open Headunit"""", "OK"), body("AT+CGMM"))
+        assertEquals(listOf("""+CGMI: "Autosauce"""", "OK"), body("AT+CGMI"))
+        assertEquals(listOf("""+CGMM: "Autosauce"""", "OK"), body("AT+CGMM"))
         assertEquals(listOf("""+CGMR: "1.0"""", "OK"), body("AT+CGMR"))
     }
 

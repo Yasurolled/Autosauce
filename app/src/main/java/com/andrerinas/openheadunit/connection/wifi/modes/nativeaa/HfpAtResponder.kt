@@ -39,8 +39,8 @@ object HfpAtResponder {
             cmd.startsWith("AT+CHLD=?") -> listOf("+CHLD: (0,1,2,3)")
             cmd.startsWith("AT+BIND=?") -> listOf("+BIND: (1,2)")
             cmd.startsWith("AT+BIND?") -> listOf("+BIND: 1,1", "+BIND: 2,1")
-            cmd.startsWith("AT+CGMI") -> listOf("""+CGMI: "Open Headunit"""")
-            cmd.startsWith("AT+CGMM") -> listOf("""+CGMM: "Open Headunit"""")
+            cmd.startsWith("AT+CGMI") -> listOf("""+CGMI: "Autosauce"""")
+            cmd.startsWith("AT+CGMM") -> listOf("""+CGMM: "Autosauce"""")
             cmd.startsWith("AT+CGMR") -> listOf("""+CGMR: "1.0"""")
             else -> emptyList()
         }

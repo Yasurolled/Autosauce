@@ -52,7 +52,7 @@ class DummyVpnService : VpnService() {
             val builder = Builder()
                 .addAddress("10.0.0.2", 24)
                 .addRoute("0.0.0.0", 0) // Route all traffic to VPN to become the "active network"
-                .setSession("Open Headunit Offline Mode")
+                .setSession("Autosauce Offline Mode")
 
             if (excludeSelf && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 // Load-bearing. A VPN captures its own app's sockets, and nothing drains this tun,

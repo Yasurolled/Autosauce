@@ -383,13 +383,13 @@ object ZbtProbe {
      * avoids a second client, but does not prove that the daemon or phone has answered.
      */
     internal fun busyCarrierVerdict(): String =
-        "Open Headunit is already using or opening the Bluetooth module connection. " +
+        "Autosauce is already using or opening the Bluetooth module connection. " +
             "The diagnostic did not open a second connection. " +
             "This does not confirm an Android Auto connection to the phone."
 
     /** A local carrier took priority; its connection outcome is separate from this diagnostic. */
     internal fun carrierTookOverVerdict(): String =
-        "Open Headunit requested the Bluetooth module connection, so the diagnostic stopped " +
+        "Autosauce requested the Bluetooth module connection, so the diagnostic stopped " +
             "and gave the connection back. This does not confirm an Android Auto connection " +
             "to the phone."
 

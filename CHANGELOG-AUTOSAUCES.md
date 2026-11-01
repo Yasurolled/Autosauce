@@ -12,6 +12,32 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### App: rename the user-visible name from "Open Headunit" to "Autosauce"
+
+The fork now has its own name, so every place a user can actually
+*see* the name was renamed:
+
+- All 49 English strings in the app's text file that refer to the app
+  by name now say "Autosauce" (the launcher label, the welcome
+  screen, notifications, settings descriptions, and so on).
+- A few names are baked into the code rather than the text files: the
+  VPN settings entry ("Autosauce Offline Mode"), the vehicle name
+  Android Auto shows by default ("Autosauce"), the name shown in
+  Bluetooth modem identity queries, the running-notification title,
+  and the wording of two Bluetooth diagnostic messages.
+- The two test files that check those baked-in names were updated in
+  the same change, so the tests assert the new names.
+- The "report an issue" link on the About screen now points to this
+  fork's GitHub issues page instead of the upstream one.
+
+Deliberately *not* renamed: the app's internal code structure (the
+`com.andrerinas.openheadunit` package and its names in files — that
+would be a huge pile of changes that no user can ever see), code
+comments, and the old one-time "our name is changing" notice, which
+describes the upstream project's history and still says it right.
+
+---
+
 ### README: carry the Autosauce name, fork, trademark and AI statements
 
 The top of the documentation now matches the fork. The project is

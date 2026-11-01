@@ -15,7 +15,7 @@ class ProjectionQrPolicyTest {
         ip: String? = "192.168.43.1",
         listeningPort: Int? = 5299,
         bluetoothMac: String? = "11:22:33:44:55:66",
-        bluetoothName: String? = "Open Headunit",
+        bluetoothName: String? = "Autosauce",
     ) = ProjectionQrSnapshot(
         strategy = strategy,
         savedStrategy = savedStrategy,
