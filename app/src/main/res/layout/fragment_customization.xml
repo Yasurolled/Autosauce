@@ -445,6 +445,47 @@
 
                 </LinearLayout>
 
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="?android:attr/listDivider" />
+
+                <!-- Bluetooth Button Color Row -->
+                <LinearLayout
+                    android:id="@+id/row_color_bt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:padding="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:id="@+id/indicator_bt"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:background="@drawable/gradient_cyan"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/btn_color_bt"
+                        android:textColor="?android:attr/textColorPrimary"
+                        android:textSize="16sp" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        app:srcCompat="@drawable/ic_chevron_right"
+                        app:tint="?android:attr/textColorSecondary" />
+
+                </LinearLayout>
+
             </LinearLayout>
 
             <!-- Auto Monochrome at Night Toggle -->

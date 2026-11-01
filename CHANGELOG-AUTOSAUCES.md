@@ -12,6 +12,22 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### Customization: add the missing color row for the Bluetooth button
+
+Finishes the Bluetooth work on the "Colors" screen of the Settings menu.
+That screen already let you pick custom colors for the Self Mode, USB and
+WiFi home-screen buttons, but had no row for Bluetooth — even though the
+setting for its color already existed in the code. Now there is a
+"Bluetooth Button" row with its own little color swatch (a cyan circle, so
+you can tell it apart from the blue/orange/purple ones), and tapping it
+opens the same color picker as the other rows. Like the other rows, it
+only shows when Bluetooth is one of your connection types. The "Reset all
+button colors" button now also clears the Bluetooth color, and the small
+home-screen picture at the top of the screen shows the chosen color too
+(that part already understood Bluetooth from the earlier commits).
+
+---
+
 ### Material You: add an opt-in "dynamic color" toggle
 
 First step of the Material Expressive look. A new switch, found on the

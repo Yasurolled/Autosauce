@@ -87,10 +87,12 @@ class CustomizationFragment : Fragment() {
     private var indicatorSelfMode: View? = null
     private var indicatorUsb: View? = null
     private var indicatorWifi: View? = null
+    private var indicatorBt: View? = null
 
     private var rowColorSelfMode: View? = null
     private var rowColorUsb: View? = null
     private var rowColorWifi: View? = null
+    private var rowColorBt: View? = null
     private var switchAutoMonochromeNight: SwitchMaterial? = null
     private var switchShowFavoriteApps: SwitchMaterial? = null
     private var switchShowWidgets: SwitchMaterial? = null
@@ -223,10 +225,12 @@ class CustomizationFragment : Fragment() {
         indicatorSelfMode = view.findViewById(R.id.indicator_self_mode)
         indicatorUsb = view.findViewById(R.id.indicator_usb)
         indicatorWifi = view.findViewById(R.id.indicator_wifi)
+        indicatorBt = view.findViewById(R.id.indicator_bt)
 
         rowColorSelfMode = view.findViewById(R.id.row_color_self_mode)
         rowColorUsb = view.findViewById(R.id.row_color_usb)
         rowColorWifi = view.findViewById(R.id.row_color_wifi)
+        rowColorBt = view.findViewById(R.id.row_color_bt)
         switchAutoMonochromeNight = view.findViewById(R.id.switch_auto_monochrome_night)
         switchShowFavoriteApps = view.findViewById(R.id.switch_show_favorite_apps)
         switchShowWidgets = view.findViewById(R.id.switch_show_widgets)
@@ -308,6 +312,17 @@ class CustomizationFragment : Fragment() {
                 Connection.WIFI
             ) { color ->
                 settings.customWifiButtonColor = color
+            }
+        }
+
+        rowColorBt?.setOnClickListener {
+            showColorPickerDialog(
+                R.string.btn_color_bt,
+                settings.customBtButtonColor,
+                R.drawable.ic_bt_white,
+                Connection.BT
+            ) { color ->
+                settings.customBtButtonColor = color
             }
         }
 
@@ -752,6 +767,7 @@ class CustomizationFragment : Fragment() {
         settings.customSelfModeButtonColor = 0
         settings.customUsbButtonColor = 0
         settings.customWifiButtonColor = 0
+        settings.customBtButtonColor = 0
         refreshUI()
     }
 
@@ -822,6 +838,7 @@ class CustomizationFragment : Fragment() {
         val showsSelf = settings.showsSelf()
         val showsUsb = settings.showsUsb()
         val showsWifi = settings.showsWifi()
+        val showsBt = settings.showsBt()
 
         // The colors are accents for the connections only: the main button, and a bar tile while
         // it is connecting or connected. The Settings tile stays neutral.
@@ -831,15 +848,18 @@ class CustomizationFragment : Fragment() {
         indicatorSelfMode?.background = colorSample(ctx, settings.customSelfModeButtonColor, Connection.SELF, 12f)
         indicatorUsb?.background = colorSample(ctx, settings.customUsbButtonColor, Connection.USB, 12f)
         indicatorWifi?.background = colorSample(ctx, settings.customWifiButtonColor, Connection.WIFI, 12f)
+        indicatorBt?.background = colorSample(ctx, settings.customBtButtonColor, Connection.BT, 12f)
 
         // Hide color customization rows for unchecked connection modes
         rowColorSelfMode?.visibility = if (showsSelf) View.VISIBLE else View.GONE
         rowColorUsb?.visibility = if (showsUsb) View.VISIBLE else View.GONE
         rowColorWifi?.visibility = if (showsWifi) View.VISIBLE else View.GONE
+        rowColorBt?.visibility = if (showsBt) View.VISIBLE else View.GONE
 
         val hasCustomColors = settings.customSelfModeButtonColor != 0 ||
                 settings.customUsbButtonColor != 0 ||
-                settings.customWifiButtonColor != 0
+                settings.customWifiButtonColor != 0 ||
+                settings.customBtButtonColor != 0
         btnResetColors?.isEnabled = hasCustomColors
     }
 

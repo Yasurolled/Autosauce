@@ -318,6 +318,7 @@
     <string name="btn_color_self_mode">Self Mode Button</string>
     <string name="btn_color_usb">USB Button</string>
     <string name="btn_color_wifi">WiFi Button</string>
+    <string name="btn_color_bt">Bluetooth Button</string>
     <string name="btn_reset_colors">Reset All Button Colors</string>
     <string name="btn_make_all_monochrome">Set all buttons to monochrome</string>
     <string name="auto_monochrome_at_night">Switch to monochrome at night</string>
