@@ -119,6 +119,7 @@ class HomeFragment : Fragment() {
     private lateinit var usbTile: View
     private lateinit var settingsTile: View
     private lateinit var wifiTile: View
+    private lateinit var btTile: View
     private lateinit var exitButton: View
     private lateinit var appsButton: View
     private var primaryAction: View? = null
@@ -220,6 +221,7 @@ class HomeFragment : Fragment() {
         usbTile = container.findViewById(R.id.usb_button)
         settingsTile = container.findViewById(R.id.settings_button)
         wifiTile = container.findViewById(R.id.wifi_button)
+        btTile = container.findViewById(R.id.bt_button)
         exitButton = container.findViewById(R.id.exit_button)
         appsButton = container.findViewById(R.id.apps_button)
         primaryAction = container.findViewById(R.id.home_primary_action)
@@ -1778,6 +1780,7 @@ class HomeFragment : Fragment() {
             openNetworkList()
             true
         }
+        btTile.setOnClickListener { onBtClicked() }
         settingsTile.setOnClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
@@ -1797,6 +1800,7 @@ class HomeFragment : Fragment() {
             HomePrimaryPolicy.Status.RECONNECTING -> reconnectCountdown?.cancel()
             else -> when (decision.primary) {
                 HomePrimaryPolicy.Connection.USB -> onUsbClicked()
+                HomePrimaryPolicy.Connection.BT  -> onBtClicked()
                 HomePrimaryPolicy.Connection.WIFI -> onWifiClicked()
                 HomePrimaryPolicy.Connection.SELF -> onSelfModeClicked()
             }
@@ -2056,6 +2060,67 @@ class HomeFragment : Fragment() {
                     controller.navigate(R.id.action_homeFragment_to_networkListFragment)
                 }
             }
+        }
+    }
+
+    private fun onBtClicked() {
+        if (showsBringUp(HomePrimaryPolicy.Connection.BT)) return
+        if (commManager.isConnected) {
+            openProjection()
+            return
+        }
+        if (!App.provide(requireContext()).settings.showsBt()) {
+            ToastUtils.showToast(requireContext(), getString(R.string.bt_disabled_in_settings), Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S &&
+            ContextCompat.checkSelfPermission(requireContext(), android.Manifest.permission.BLUETOOTH_CONNECT) != PackageManager.PERMISSION_GRANTED) {
+            bluetoothPermissionLauncher.launch(android.Manifest.permission.BLUETOOTH_CONNECT)
+            return
+        }
+        val appSettings = App.provide(requireContext()).settings
+        val cands = BluetoothHelper.driverCandidates(
+            requireContext(), appSettings.nativePreferredDeviceMac, appSettings.lastConnectedNativeMac
+        )
+        val candidates = cands.offered
+        val connectedMacs = cands.connectedOffered.map { it.address }
+        val hasHistory = appSettings.lastConnectedNativeMac.isNotEmpty() ||
+            appSettings.nativePreferredDeviceMac.isNotEmpty() ||
+            appSettings.nativePokeBtMacs.isNotEmpty()
+
+        val scope = autoScopeMacs(cands, appSettings)
+        val autoTargetMac = com.andrerinas.openheadunit.connection.wifi.modes.nativeaa.NativeDriverSelectionPolicy.resolveAutoConnectTarget(
+            preferredMac = appSettings.nativePreferredDeviceMac,
+            lastUsedMac = com.andrerinas.openheadunit.connection.wifi.modes.nativeaa.NativeDriverSelectionPolicy.lastUsedMac(
+                appSettings.lastConnectedNativeMac, appSettings.nativePokeBtMacs
+            ),
+            connectedMacs = connectedMacs,
+            pairedMacs = candidates.map { it.address },
+            scopeMacs = scope
+        )
+
+        val shouldShow = com.andrerinas.openheadunit.connection.wifi.modes.nativeaa.NativeDriverSelectionPolicy.shouldShowSelector(
+            mode = appSettings.nativeDriverSelectionMode,
+            pairedCount = candidates.size,
+            connectedCount = connectedMacs.size,
+            scopedCount = scope.size,
+            hasHistory = hasHistory
+        )
+
+        if (appSettings.nativeDriverSelectionMode == com.andrerinas.openheadunit.connection.wifi.modes.nativeaa.NativeDriverSelectionPolicy.Mode.DISABLED) {
+            if (autoTargetMac != null) {
+                val targetDev = cands.deviceFor(autoTargetMac)
+                val devName = targetDev?.name ?: autoTargetMac
+                connectToNativeDevice(autoTargetMac, devName, connectedMacs, explicit = false)
+            } else {
+                showNativeAaDeviceSelector(autoCountdown = false)
+            }
+        } else if (!shouldShow && autoTargetMac != null) {
+            val targetDev = cands.deviceFor(autoTargetMac)
+            val devName = targetDev?.name ?: autoTargetMac
+            connectToNativeDevice(autoTargetMac, devName, connectedMacs, explicit = false)
+        } else {
+            showNativeAaDeviceSelector(autoCountdown = false)
         }
     }
 

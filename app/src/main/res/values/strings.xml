@@ -260,6 +260,7 @@
     <string name="remove">Remove</string>
     <string name="usb">USB</string>
     <string name="wifi">WiFi</string>
+    <string name="bluetooth">BT</string>
     <string name="dpi">Pixel density (DPI)</string>
     <string name="pixel_aspect_ratio">Pixel aspect ratio</string>
     <string name="mic_sample_rate">Mic capture rate</string>
@@ -1498,6 +1499,7 @@
     <string name="home_kicker_last_connection">Your last connection</string>
     <string name="home_kicker_cable">Cable</string>
     <string name="home_kicker_wireless">Wireless</string>
+    <string name="home_kicker_bluetooth">Bluetooth</string>
     <string name="home_title_active">Your phone is connected</string>
     <string name="home_title_reconnecting">Reconnecting</string>
     <string name="home_title_connecting">Connecting to your phone</string>
@@ -1506,17 +1508,21 @@
     <string name="home_title_phone_detected_generic">Phone detected</string>
     <string name="home_title_usb_ready">Plug in your phone</string>
     <string name="home_title_wifi_ready">Connect wirelessly</string>
+    <string name="home_title_bt_ready">Open Android Auto on your phone</string>
     <string name="home_title_self_ready">Android Auto on this unit</string>
     <string name="home_subtitle_searching">Open Android Auto on the phone if it does not show up</string>
     <string name="home_subtitle_usb">Over USB cable</string>
     <string name="home_subtitle_wifi">Over WiFi</string>
+    <string name="home_subtitle_bt">Over Bluetooth (HFP)</string>
     <string name="home_subtitle_self">Runs Android Auto on the radio itself</string>
     <string name="home_action_back_to_android_auto">Back to Android Auto</string>
     <string name="home_action_connect_now">Connect now</string>
     <string name="home_action_search_again">Search again</string>
     <string name="home_action_connect_usb">Connect over USB</string>
     <string name="home_action_connect_wifi">Connect over WiFi</string>
+    <string name="home_action_connect_bt">Connect via Bluetooth</string>
     <string name="home_action_start_self_mode">Start Self Mode</string>
+    <string name="bt_disabled_in_settings">Bluetooth connection is disabled in Settings</string>
     <string name="home_all_apps">All</string>
     <string name="home_add_favorite">Add app</string>
     <string name="home_favorite_change">Change</string>

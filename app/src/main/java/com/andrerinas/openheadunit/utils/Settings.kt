@@ -1192,8 +1192,10 @@ class Settings(private val context: Context) {
     fun showsUsb(): Boolean = connectionModes.isEmpty() || ConnectionMode.USB in connectionModes
     /** Whether WiFi/wireless settings should be shown (empty selection shows everything). */
     fun showsWifi(): Boolean = connectionModes.isEmpty() || ConnectionMode.WIFI in connectionModes
+    /** Whether Bluetooth settings should be shown (empty selection shows everything). */
+    fun showsBt(): Boolean = connectionModes.isEmpty() || ConnectionMode.BT in connectionModes
     /** The external-GPS choice only applies when a phone is connected; false only for Self-only. */
-    fun showsExternalGps(): Boolean = showsUsb() || showsWifi()
+    fun showsExternalGps(): Boolean = showsUsb() || showsWifi() || showsBt()
 
     /** Whether Self Mode settings should be shown (empty selection shows everything). */
     fun showsSelf(): Boolean = connectionModes.isEmpty() || ConnectionMode.SELF in connectionModes
@@ -1620,6 +1622,10 @@ class Settings(private val context: Context) {
         get() = prefs.getInt("custom-wifi-button-color", 0)
         set(value) { prefs.edit().putInt("custom-wifi-button-color", value).apply() }
 
+    var customBtButtonColor: Int
+        get() = prefs.getInt("custom-bt-button-color", 0)
+        set(value) { prefs.edit().putInt("custom-bt-button-color", value).apply() }
+
     // Custom button scaling percentage for Home screen (default = 100%, valid range 60..120)
     var homeButtonScalePercent: Int
         get() {
@@ -1761,7 +1767,7 @@ class Settings(private val context: Context) {
 
     /** A connection type the user can pick in the multi-select (USB, WiFi or Self Mode). */
     enum class ConnectionMode(val key: String) {
-        USB("usb"), WIFI("wifi"), SELF("self");
+        USB("usb"), BT("bt"), WIFI("wifi"), SELF("self");
 
         companion object {
             fun fromKey(k: String) = values().firstOrNull { it.key == k }

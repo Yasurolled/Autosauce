@@ -80,6 +80,17 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:id="@+id/bt_button"
+                    style="@style/HomeTile">
+                    <ImageView
+                        style="@style/HomeTileIcon"
+                        app:srcCompat="@drawable/ic_bt_white" />
+                    <com.andrerinas.openheadunit.view.WordFitTextView
+                        style="@style/HomeTileLabel.Wrap"
+                        android:text="@string/bluetooth" />
+                </LinearLayout>
+
+                <LinearLayout
                     android:id="@+id/settings_button"
                     style="@style/HomeTile">
                     <ImageView

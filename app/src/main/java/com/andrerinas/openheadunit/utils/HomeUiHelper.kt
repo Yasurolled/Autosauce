@@ -120,6 +120,7 @@ object HomeUiHelper {
 
     private fun tileId(connection: Connection): Int = when (connection) {
         Connection.USB -> R.id.usb_button
+        Connection.BT  -> R.id.bt_button
         Connection.WIFI -> R.id.wifi_button
         Connection.SELF -> R.id.self_mode_button
     }
@@ -183,6 +184,7 @@ object HomeUiHelper {
         @ColorInt val usb: Int,
         @ColorInt val wifi: Int,
         @ColorInt val self: Int,
+        @ColorInt val bt: Int,
         @ColorInt val monochrome: Int,
         @ColorInt val countdownRing: Int,
         val surfaceOpacityPercent: Int = HomeSurfaceOpacityPolicy.DEFAULT
@@ -227,6 +229,7 @@ object HomeUiHelper {
             usb = color(R.color.home_usb, R.color.home_extreme_usb),
             wifi = color(R.color.home_wifi, R.color.home_extreme_wifi),
             self = color(R.color.home_self, R.color.home_extreme_self),
+            bt = color(R.color.home_bt, R.color.home_extreme_bt),
             monochrome = color(R.color.home_monochrome, R.color.home_extreme_monochrome),
             countdownRing = color(R.color.home_countdown_ring, R.color.home_extreme_countdown_ring),
             surfaceOpacityPercent = surfaceOpacityPercent
@@ -769,6 +772,7 @@ object HomeUiHelper {
 
     private fun customColor(settings: Settings, connection: Connection): Int = when (connection) {
         Connection.USB -> settings.customUsbButtonColor
+        Connection.BT  -> settings.customBtButtonColor
         Connection.WIFI -> settings.customWifiButtonColor
         Connection.SELF -> settings.customSelfModeButtonColor
     }
@@ -776,6 +780,7 @@ object HomeUiHelper {
     /** The design's own color for the connection, the one a user who never picked one sees. */
     fun defaultConnectionColor(connection: Connection, palette: Palette): Int = when (connection) {
         Connection.USB -> palette.usb
+        Connection.BT  -> palette.bt
         Connection.WIFI -> palette.wifi
         Connection.SELF -> palette.self
     }
@@ -785,6 +790,7 @@ object HomeUiHelper {
         Status.RECONNECTING -> R.string.home_kicker_last_connection
         else -> when (decision.primary) {
             Connection.USB -> R.string.home_kicker_cable
+            Connection.BT  -> R.string.home_kicker_bluetooth
             Connection.WIFI -> R.string.home_kicker_wireless
             Connection.SELF -> R.string.self_mode
         }
@@ -800,6 +806,7 @@ object HomeUiHelper {
         Status.WAITING, Status.READY -> context.getString(
             when (decision.primary) {
                 Connection.USB -> R.string.home_title_usb_ready
+                Connection.BT  -> R.string.home_title_bt_ready
                 Connection.WIFI -> R.string.home_title_wifi_ready
                 Connection.SELF -> R.string.home_title_self_ready
             }
@@ -998,6 +1005,7 @@ object HomeUiHelper {
     private fun subtitleRes(decision: Decision): Int = when {
         decision.status == Status.SEARCHING -> R.string.home_subtitle_searching
         decision.primary == Connection.USB -> R.string.home_subtitle_usb
+        decision.primary == Connection.BT -> R.string.home_subtitle_bt
         decision.primary == Connection.WIFI -> R.string.home_subtitle_wifi
         else -> R.string.home_subtitle_self
     }
@@ -1008,6 +1016,7 @@ object HomeUiHelper {
         Status.SEARCHING -> R.string.home_action_search_again
         else -> when (decision.primary) {
             Connection.USB -> R.string.home_action_connect_usb
+            Connection.BT  -> R.string.home_action_connect_bt
             Connection.WIFI -> R.string.home_action_connect_wifi
             Connection.SELF -> R.string.home_action_start_self_mode
         }
@@ -1015,6 +1024,7 @@ object HomeUiHelper {
 
     private fun iconRes(connection: Connection): Int = when (connection) {
         Connection.USB -> R.drawable.ic_usb_white
+        Connection.BT  -> R.drawable.ic_bt_white
         Connection.WIFI -> R.drawable.ic_network_wifi_white
         Connection.SELF -> R.drawable.ic_launch_white
     }

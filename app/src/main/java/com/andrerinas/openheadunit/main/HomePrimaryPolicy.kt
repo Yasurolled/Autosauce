@@ -12,7 +12,7 @@ import com.andrerinas.openheadunit.connection.ConnectionStage
 object HomePrimaryPolicy {
 
     /** In the order the bar lists them. */
-    enum class Connection { USB, WIFI, SELF }
+    enum class Connection { USB, BT, WIFI, SELF }
 
     enum class Status {
         /** A projection is running: the button only has to take the user back to it. */
