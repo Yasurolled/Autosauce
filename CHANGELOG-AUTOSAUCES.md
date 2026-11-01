@@ -15,6 +15,37 @@ everything.
 
 ## 2026-11-01
 
+### App: give the fork its own package id (autosauce.yasurolled.com)
+
+The app now installs under its own package name, `autosauce.yasurolled.com`,
+instead of the upstream `com.andrerinas.headunitrevived`. In everyday terms:
+Android treats it as a brand-new app — a fresh icon, a fresh entry in
+Settings, and a fresh install. The old app (if installed) has to be
+uninstalled separately; its saved settings do not carry over. Everything
+that pointed at the old package id was updated with it: the app's launcher
+shortcuts, the automation contract (so Tasker/MacroDroid macros and the
+`adb` examples in the contract docs now use the new package), and the
+privacy-policy note. The Java/Kotlin code package
+(`com.andrerinas.openheadunit`) deliberately does NOT change — that would
+mean moving the entire source tree — only the install-identity name.
+Tests that check upstream release file names keep the old name, because
+those files really do carry it on the upstream site.
+
+---
+
+### App: fix the crash when the app starts on portrait phones
+
+The app crashed on launch on phones held in portrait ("NullPointerException"
+in the home screen builder). Cause: the home screen exists in two layouts —
+one for wide screens (the usual head-unit look) and one for tall phones —
+and the new Bluetooth button was added to only the wide one. The portrait
+layout looked up the button, found it wasn't there, and the whole app fell
+over on start. The button is now part of the portrait layout too, styled
+the same way as the row's other tiles, so phones and tablets show the
+same buttons.
+
+---
+
 ### Docs: merge the two changelogs into one file
 
 The history used to be split between two places: this file (the
