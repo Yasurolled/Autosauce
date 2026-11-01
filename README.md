@@ -1,16 +1,44 @@
-# Open Headunit
+# Autosauce
 
-<a href='https://play.google.com/store/apps/details?id=com.andrerinas.headunitrevived'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' width="200"/></a>
-<a href='http://www.amazon.com/gp/mas/dl/android?p=com.andrerinas.headunitrevived'><img alt='Available at Amazon Appstore' src='https://images-na.ssl-images-amazon.com/images/G/01/mobile-apps/devportal2/res/images/amazon-appstore-badge-english-black.png' width="200"/></a>
+<sub>Source and releases: [github.com/Yasurolled/Autosauce](https://github.com/Yasurolled/Autosauce)</sub>
 
 <p align="center">
     <img src="https://github.com/user-attachments/assets/579b7b03-23e0-4eda-a05d-c51d28a72113"
-    alt="Headunit Logo"
+    alt="Autosauce"
     height="200">
 </p>
 
-Open Headunit is an Android app that allows you to turn your Android tablet or phone into an Android Auto receiver. This project is a revived version of the original headunit project by the great Michael Reid. The original project can be found here:
-https://github.com/mikereidis/headunit
+Autosauce is an Android app that allows you to turn your Android tablet or phone into an Android Auto receiver.
+
+## What this is
+
+**This repository is a fork.** It starts from [open-headunit](https://github.com/andreknieriem/open-headunit) — itself a revival of the original headunit project by the great Michael Reid ([the original project](https://github.com/mikereidis/headunit)) — and adds the Autosauce work on top:
+
+- Bluetooth as a first-class connection option (home tile, settings, color customization)
+- an opt-in Material You "dynamic color" toggle on the Appearance screen
+- a running plain-English change log in [`CHANGELOG-AUTOSAUCES.md`](CHANGELOG-AUTOSAUCES.md)
+
+It is built and maintained by **Yasurolled**.
+
+## Trademarks
+
+**Yasurolled** and **Autosauce** are trademarks of Yasurolled.
+Android, Google Play, Google Maps and Android Auto are trademarks of Google Inc.
+
+## AI assistance
+
+This fork was developed with the help of **Claude AI** — Anthropic's
+[Claude Code](https://claude.com/claude-code) coding agent. The model
+used is stated separately: **Agnes-3.0-flash, developed by Sapiens AI**.
+
+## Contributors
+
+- **Yasurolled** — fork author; Bluetooth connection work, button-color
+  customization, the Material You toggle, and the fork's documentation.
+- **Claude Code (Anthropic)** — AI coding agent that developed the
+  Autosauce work alongside the fork author. The model it ran on is
+  stated separately from the agent itself: **Agnes-3.0-flash
+  (Sapiens AI)**.
 
 ## NOTE!
 **Android Auto 17.4 and newer can prevent legacy wireless triggers from launching projection, including Self-Mode and automated startup via Wireless Helper. Rooted devices have a workaround: re-enable Android Auto's wireless startup receiver.**
@@ -31,10 +59,10 @@ Choose from the five options below according to your Android Auto version and se
 **Check out the [Wiki](https://github.com/andreknieriem/open-headunit/wiki) for detailed documentation, setup guides and troubleshooting!**
 
 ### Wired USB Connection
-- Connect your Android device (phone) to the tablet running Open Headunit via USB cable.
+- Connect your Android device (phone) to the tablet running Autosauce via USB cable.
 - Make sure that Android Auto is installed on your phone.
 - Set your phone to Host-Mode if nescessary and select Android Auto
-- Click the USB Button in Open Headunit, find your phone and click the right button to allow connection
+- Click the USB Button in Autosauce, find your phone and click the right button to allow connection
 - Click on your phone in the list and wait for Android Auto to start
 
 ### Wireless Connection Options
@@ -47,7 +75,7 @@ Choose from the five options below depending on your Android Auto version and se
 #### 2. Native Mode (Wi-Fi Direct / Headunit Hotspot)
 - Directly communicates with Android Auto's native wireless protocol without helper apps.
 - Supports **Wi-Fi Direct (P2P)** or the **Headunit Hotspot** transport.
-- Configure under Open Headunit Settings -> **Android Auto Mode** -> **Native Mode**.
+- Configure under Autosauce Settings -> **Android Auto Mode** -> **Native Mode**.
 
 #### Optional automatic Wi-Fi scan pause
 
@@ -101,13 +129,13 @@ On FYT units where the phone pairs for calls with a separate Bluetooth module (f
 
 Requirements:
 - An FYT unit that exposes `/dev/auto_serial` (Car Link's external-module backend, `sys.fyt.bluetooth_type` above zero).
-- Nothing extra where the node is app-openable, as it is for the stock Car Link. Where it is not (node mode or SELinux), root access for Open Headunit, used as a fallback.
+- Nothing extra where the node is app-openable, as it is for the stock Car Link. Where it is not (node mode or SELinux), root access for Autosauce, used as a fallback.
 - The stock `com.syu.carlink` package disabled, because two readers on the same terminal split protocol messages.
 - The phone paired with the module; pairing and phone priority remain managed by the module.
 
 Setup:
 1. Disable the stock client: `adb shell pm disable-user --user 0 com.syu.carlink` (prefix with `su -c` if the shell refuses).
-2. In Open Headunit, select **Native Mode** and enable **Connect through the FYT external Bluetooth module**.
+2. In Autosauce, select **Native Mode** and enable **Connect through the FYT external Bluetooth module**.
 3. Keep the phone paired with the module and connect normally.
 
 On a detected FYT module unit with this transport off, Native Mode refuses to start and names this setting, instead of listening on a radio the phone is not paired with. If the channel cannot be opened (Car Link still enabled or running, or the node not app-openable and root denied), the reason is shown on screen and retried with a growing delay.
@@ -120,13 +148,13 @@ Android Bluetooth driver selection, preferred-phone and wake-list controls are i
   1. Open Android Auto settings on your phone (or tablet in Self-Mode).
   2. Scroll down and tap **Version** 10 times to unlock Developer settings.
   3. Tap the three-dot menu in the top right corner and choose **Start headunit server**.
-  4. In Open Headunit, tap the **WiFi** button to connect (or use Self-Mode).
+  4. In Autosauce, tap the **WiFi** button to connect (or use Self-Mode).
 
 #### 4. Wireless Helper
 - Our companion app triggers the wireless connection automatically in the background.
 - **Compatibility:** Android Auto **v17.3 and below**, or **v17.4+** with the root workaround in option 5.
 - **Download:** [Wireless Helper on Google Play Store](https://play.google.com/store/apps/details?id=com.andrerinas.wirelesshelper)
-- **Setup:** Set Open Headunit Wireless Mode to **Helper Mode**, ensure both devices are in the same network or Wi-Fi Direct group, and start the service in the Wireless Helper app.
+- **Setup:** Set Autosauce Wireless Mode to **Helper Mode**, ensure both devices are in the same network or Wi-Fi Direct group, and start the service in the Wireless Helper app.
 
 #### 5. Root Workaround for Android Auto 17.4+
 On the device running Android Auto (normally the phone), open a **root shell**, for example by running `su` in a terminal and granting root access. Then run:
@@ -184,7 +212,7 @@ adb shell am start -a android.intent.action.VIEW -d "headunit://connect?ip=192.1
 ### v.3.5.0
 - Native AA: reconnect to a network that is still there, wake the phone over Bluetooth or the external module, bring a lost group or hotspot back after sleep, boot or ACC wake, stop advertising an address that moves, and pick, wake or hold back only for a phone that is on
 - Wireless: BSSID recovery via IPv6 EUI-64, keep the station stood down mid-session, hold every automatic bring-up while the unit is asleep, and log a refused start at boot instead of crashing
-- Added: Option to use Open Headunit as a launcher, thanks to @amp3r1 for some improvements
+- Added: Option to use Autosauce as a launcher, thanks to @amp3r1 for some improvements
 - Added: Simplified Chinese 🇨🇳, Indonesian 🇮🇩, Hindi 🇮🇳, Thai 🇹🇭, European Portuguese 🇵🇹
 - Connection: one attempt at a time, hold auto-connect behind settings and the pill's X, and fix the dongle's TLS handshake
 - Add on-demand "Check for Updates" button
@@ -737,3 +765,5 @@ A new car or a $600+ headunit is NOT required to enjoy the integration and distr
 This headunit app can turn a Android 4.1+ tablet supporting USB Host mode into a basic Android Auto compatible headunit.
 
 Android, Google Play, Google Maps, Google Play Music and Android Auto are trademarks of Google Inc.
+
+Yasurolled and Autosauce are trademarks of Yasurolled.

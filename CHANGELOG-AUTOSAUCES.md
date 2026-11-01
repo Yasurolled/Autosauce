@@ -12,6 +12,25 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### README: carry the Autosauce name, fork, trademark and AI statements
+
+The top of the documentation now matches the fork. The project is
+called **Autosauce**; a new "What this is" section says in plain
+words that this repository is a *fork* of open-headunit (and that
+open-headunit is itself a revival of the original headunit project).
+New "Trademarks", "AI assistance" and "Contributors" sections record
+that Yasurolled and Autosauce are trademarks of Yasurolled, that the
+fork was developed with the help of Claude AI (Anthropic's Claude
+Code) with the model stated separately — Agnes-3.0-flash, developed
+by Sapiens AI — and that Claude Code counts as a contributor, with
+its model named separately from the agent. Every user-facing
+"Open Headunit" mention in the how-to text now reads "Autosauce";
+the upstream project's own history entries keep their old names. The
+two app-store badges that advertised the *upstream* app were
+replaced with a link to the fork's GitHub page.
+
+---
+
 ### License: give the fork its own copyright and trademark notice
 
 The legal paperwork for the fork. The project keeps the same open
