@@ -12,6 +12,23 @@ Newest entries are at the top. Each entry has a date, the commit's subject line
 
 ## 2026-11-01
 
+### Tests: repair the home-screen rule tests that Bluetooth had quietly broken
+
+A housekeeping fix to the test suite, no change to the app itself. The
+test file that checks the rules for "which home-screen button stands for
+which connection" was written back when there were three connection
+types (USB, WiFi and Self Mode). When Bluetooth was added as the fourth,
+four of those tests kept expecting the old, smaller list of bottom-bar
+buttons — so anyone running the test suite saw four failures. The app
+behaviour was right all along (the bar really does carry the Bluetooth
+button now); the tests just described the old three-connection world.
+The four expectations were updated to include Bluetooth, and one new
+test was added for the mirror case: on a unit where only Bluetooth is
+on, the main button is Bluetooth and the bar is empty. The whole file
+is green again (35 tests, 0 failures).
+
+---
+
 ### Customization: add the missing color row for the Bluetooth button
 
 Finishes the Bluetooth work on the "Colors" screen of the Settings menu.

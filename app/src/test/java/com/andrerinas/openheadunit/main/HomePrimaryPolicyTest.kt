@@ -31,14 +31,14 @@ class HomePrimaryPolicyTest {
         val decision = HomePrimaryPolicy.decide(input())
         assertEquals(Connection.USB, decision.primary)
         assertEquals(Status.READY, decision.status)
-        assertEquals(listOf(Connection.WIFI, Connection.SELF), decision.barConnections)
+        assertEquals(listOf(Connection.BT, Connection.WIFI, Connection.SELF), decision.barConnections)
     }
 
     @Test
     fun `the last connection is the main button when nothing is plugged in`() {
         val decision = HomePrimaryPolicy.decide(input(lastConnection = Connection.WIFI))
         assertEquals(Connection.WIFI, decision.primary)
-        assertEquals(listOf(Connection.USB, Connection.SELF), decision.barConnections)
+        assertEquals(listOf(Connection.USB, Connection.BT, Connection.SELF), decision.barConnections)
     }
 
     @Test
@@ -80,6 +80,14 @@ class HomePrimaryPolicyTest {
         val decision = HomePrimaryPolicy.decide(input(chosen = setOf(Connection.SELF)))
         assertEquals(Connection.SELF, decision.primary)
         assertEquals(Status.READY, decision.status)
+    }
+
+    @Test
+    fun `Bluetooth alone is the main button`() {
+        val decision = HomePrimaryPolicy.decide(input(chosen = setOf(Connection.BT)))
+        assertEquals(Connection.BT, decision.primary)
+        assertEquals(Status.READY, decision.status)
+        assertEquals(emptyList<Connection>(), decision.barConnections)
     }
 
     @Test
@@ -279,7 +287,7 @@ class HomePrimaryPolicyTest {
     fun `with no mode chosen the bar on a second page still carries the card's connection`() {
         val decision = HomePrimaryPolicy.decide(input(lastConnection = Connection.WIFI))
         assertEquals(
-            listOf(Connection.USB, Connection.SELF, Connection.WIFI),
+            listOf(Connection.USB, Connection.BT, Connection.SELF, Connection.WIFI),
             HomePrimaryPolicy.barConnections(decision, emptySet(), carriesEveryConnection = true)
         )
     }
@@ -288,7 +296,7 @@ class HomePrimaryPolicyTest {
     fun `a single page leaves the card's connection off the bar`() {
         val decision = HomePrimaryPolicy.decide(input())
         assertEquals(
-            listOf(Connection.WIFI, Connection.SELF),
+            listOf(Connection.BT, Connection.WIFI, Connection.SELF),
             HomePrimaryPolicy.barConnections(decision, emptySet(), carriesEveryConnection = false)
         )
     }
